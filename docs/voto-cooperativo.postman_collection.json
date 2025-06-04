@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "706cc0b5-1bc2-4a53-8e35-fb1d9197f531",
+		"name": "Voto Cooperativo API",
+		"description": "Collection para testes da API Voto Cooperativo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4092831"
+	},
+	"item": [
+		{
+			"name": "Criar Pauta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Pauta de Teste\",\n  \"description\": \"Descrição da pauta de teste\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/agendas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"agendas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Abrir Sessão de Votação",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"durationMinutes\": 5\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/agendas/{{agendaId}}/sessions",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"agendas",
+						"{{agendaId}}",
+						"sessions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Abrir Sessão de Votação - Sem Payload (Duração padrão)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/agendas/{{agendaId}}/sessions",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"agendas",
+						"{{agendaId}}",
+						"sessions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar Resultados da Votação",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/agendas/{{agendaId}}/results",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"agendas",
+						"{{agendaId}}",
+						"results"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrar Voto",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"userId\": \"12345678900\",\n  \"voteValue\": \"YES\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/agendas/{{agendaId}}/votes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"agendas",
+						"{{agendaId}}",
+						"votes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fechar Pauta (Sessão de Votação)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/agendas/{{agendaId}}/close",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"agendas",
+						"{{agendaId}}",
+						"close"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "agendaId",
+			"value": "3"
+		}
+	]
+}

@@ -1,0 +1,27 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: voto-cooperativo
+  datasource:
+    url: jdbc:postgresql://db:5432/voto_cooperativo
+    username: postgres
+    password: postgres
+  data:
+    jpa:
+      hibernate:
+        ddl-auto: none
+      repositories:
+        enabled: true
+    auditing:
+      enabled: true
+  flyway:
+    enabled: true
+    ignore-unknown-database: true
+    check-location: false
+    validate-on-migrate: false
+    ignore-missing-migrations: true
+external:
+  user:
+    service:
+      url: http://user-service:8081

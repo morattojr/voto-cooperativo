@@ -1,0 +1,49 @@
+services:
+  voto-cooperativo-api:
+    container_name: voto-cooperativo-api
+    build:
+      context: ./voto-cooperativo-api
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/votodb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - USER_SERVICE_URL=http://user-service-api:8081
+    depends_on:
+      - db
+      - user-service-api
+    networks:
+      - voto-network
+
+  user-service-api:
+    container_name: user-service-api
+    build:
+      context: ./user-service-api
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    networks:
+      - voto-network
+
+  db:
+    container_name: postgres-db
+    image: postgres:14.7
+    environment:
+      - POSTGRES_DB=votodb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - voto-network
+
+networks:
+  voto-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

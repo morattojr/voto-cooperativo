@@ -1,0 +1,23 @@
+.gradle/
+build/
+gradle/
+gradlew
+gradlew.bat
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Docker
+*.log
+docker-compose.override.yml
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Outros
+*.DS_Store
+/target/

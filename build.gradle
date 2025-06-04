@@ -1,0 +1,35 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:3.3.2'
+        classpath 'io.spring.gradle:dependency-management-plugin:1.1.6'
+    }
+}
+
+
+plugins {
+    id 'org.springframework.boot' version '3.3.2' apply false
+    id 'io.spring.dependency-management' version '1.1.6' apply false
+}
+
+allprojects {
+    group = 'com.cooperative'
+    version = '0.0.1-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    afterEvaluate {
+        if (plugins.hasPlugin('java')) {
+            test {
+                useJUnitPlatform()
+            }
+        }
+    }
+}
